@@ -2,6 +2,8 @@ name: Deployment-of-python-app
 
 on:
   push:
+    paths:
+      - 'test**'
     branches:
       - 'feature/pipelines'
   pull_request:
