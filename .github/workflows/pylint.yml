@@ -4,8 +4,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "this has been triggered ${{ github.event_name }} event"
-    - run: echo "This job is running on ${{ runner.os }} server hosted on github!"
+    - name: Print event
+      run: echo "this has been triggered ${{ github.event_name }} event"
+    - name: Print os
+      run: echo "This job is running on ${{ runner.os }} server hosted on github!"
     - name: Check out repository code
       uses: actions/checkout@v2
     - name: Set up Python 3.9
@@ -15,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        pip install pylint==2.11.1
     - name: Lint with pylint
       run: |
         python lint_test.py
@@ -28,4 +30,5 @@ jobs:
         echo "Deploying to cluster..."
         sleep 10
         echo "Container has been deployed!"
-    - run: echo "This job's status is ${{ job.status }}."
+    - name: Job status
+      run: echo "This job's status is ${{ job.status }}."
