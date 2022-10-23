@@ -1,0 +1,9 @@
+name: test-github-actions
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "Github Workflow"
+      - run: pwd
