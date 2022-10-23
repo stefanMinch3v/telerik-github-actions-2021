@@ -1,5 +1,10 @@
 name: Deployment-of-python-app
-on: [push]
+
+on:
+  push:
+    branches:
+      - 'feature/pipelines'
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -21,6 +26,10 @@ jobs:
     - name: Lint with pylint
       run: |
         python lint_test.py
+    - name: Style Check
+      run: |
+        pip install pycodestyle
+        pycodestyle *.py 
     - name: Build container
       run: |
         echo "Building a container image..."
